@@ -35,6 +35,46 @@ Discord-бот с коллекционной системой карточек, 
 Полная коллекция карточек намеренно **не входит в публичный репозиторий**. Локальная папка `cards/` используется ботом, но исключена через `.gitignore`.
 
 
+## 🃏 Примеры карточек
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="examples/card_common_1gen.png" width="220">
+      <br>
+      <b>Common</b>
+    </td>
+    <td align="center">
+      <img src="examples/card_epic_2gen.png" width="220">
+      <br>
+      <b>Epic</b>
+    </td>
+    <td align="center">
+      <img src="examples/card_legendary_6gen.png" width="220">
+      <br>
+      <b>Legendary</b>
+    </td>
+  </tr>
+</table>
+
+
+## 📸 Скриншоты
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/drop.png" width="400">
+      <br>
+      <b>Drop</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/inventory.png" width="400">
+      <br>
+      <b>Inventory</b>
+    </td>
+  </tr>
+</table>
+
 
 ## 🛠 Требования
 
