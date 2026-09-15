@@ -1,0 +1,19 @@
+# Карточки чисто на компе лежать будут
+cards/
+For cards creation/
+
+# Служебные файлы Python
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Файлы PyCharm
+.idea/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment / secrets
+.env

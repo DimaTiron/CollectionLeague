@@ -1,0 +1,88 @@
+import sqlite3
+import os
+from functions import variables as v
+connection = sqlite3.connect('server.db')
+
+
+def create_start_database(self):
+    # self.cursor.execute("""DROP TABLE users""")
+    self.cursor.execute(v.bd_table_create)
+    for guild in self.bot.guilds:
+        for member in guild.members:
+            add_new_member(self, member)
+    self.connection.commit()
+
+
+def add_new_member(self, member):
+    a = [0 for i in range(len(v.bd_params + v.all_cards + v.boosters_true_names))]
+    striiing = str(tuple(a))[1:-1]
+    request = f'INSERT INTO users VALUES (?, ?, 0, {striiing})'
+    if self.cursor.execute(f"SELECT id FROM users WHERE id = ?", (member.id,)).fetchone() is None:
+        self.cursor.execute(request, (str(member), member.id))
+
+
+def sell_card(self):
+    self.cursor.execute("UPDATE users SET cash = cash {} {} WHERE id = {}".format("+", self.cost, self.author))
+    self.cursor.execute(f"UPDATE users SET {self.name} = {self.name} - {self.number} WHERE id = {self.author}")
+    self.connection.commit()
+
+
+def see_card(self, card, author):
+    author = str(author)
+    full_name = card + ".png"
+    for i in list(v.drop_info.keys()):
+        if os.path.exists(f"./cards/{i}/{full_name}"):
+            have_card = self.cursor.execute(f"""SELECT {card} from users WHERE id = {author}""").fetchall()
+            if have_card[0][0] > 0:
+                a = f"./cards/{i}/{full_name}"
+                return a
+
+    return "no"
+
+def waste_booster(self, booster, author):
+    self.cursor.execute(f"UPDATE users SET {booster} = {booster} - {1} WHERE id = {author}")
+    self.connection.commit()
+
+
+def sell_card_from_drop(self):
+    give_take_money(self, self.cost, self.author, '+')
+    self.cursor.execute("UPDATE users SET cards_opened = cards_opened + {} WHERE id = {}".format(1, self.author))
+    self.connection.commit()
+
+
+def take_card(self):
+    self.cursor.execute(f"UPDATE users SET {self.name} = {self.name} + {1} WHERE id = {self.author}")
+    self.connection.commit()
+
+
+def buy_booster(self, name, cost):
+    give_take_money(self, cost, self.author, '-')
+    self.cursor.execute(f"UPDATE users SET {name} = {name} + {1} WHERE id = {self.author}")
+    self.connection.commit()
+    pass
+
+
+def increase_rarity(self, rarity):
+    self.cursor.execute(f"UPDATE users SET {rarity} = {rarity} + 1 WHERE id = {self.author}")
+    self.cursor.execute(f"UPDATE users SET cards_opened = cards_opened + 1 WHERE id = {self.author}")
+    self.connection.commit()
+
+
+def give_take_money(self, amount, user_id, operand):
+    self.cursor.execute("UPDATE users SET cash = cash {} {} WHERE id = {}".format(operand, int(amount), user_id))
+    self.connection.commit()
+
+
+def number_of_cards_in_inv(self, card, author):
+    num_of_cards = self.cursor.execute(f'SELECT {card} FROM users WHERE id = {author}').fetchone()[0]
+    return num_of_cards
+
+
+def member_money(self):
+    money = self.cursor.execute(f'SELECT cash FROM users WHERE id = {self.author}').fetchone()[0]
+    return money
+
+
+def take_away_card(self, author, card, num):
+    self.cursor.execute(f"UPDATE users SET {card} = {card} - {num} WHERE id = {author}")
+    self.connection.commit()
