@@ -134,7 +134,6 @@ python -m pip install -r requirements.txt
 DISCORD_TOKEN=your_discord_bot_token
 ```
 
-Файл `.env` **не должен публиковаться**. Он уже добавлен в `.gitignore`.
 
 В репозитории также находится:
 
